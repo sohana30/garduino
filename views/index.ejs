@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.css" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Quicksand:400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="stylesheets/style.css" type="text/css">
+
+    <script src="/socket.io/socket.io.js"></script>
+
+    <title>Arden | Sensor Summary</title>
+</head>
+<body>
+    <header>
+        <img src="images/logo/Arden Logo Design Final.svg" class="logo">
+        <input type="checkbox" id="nav-toggle" class="nav-toggle">
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#login">Login</a></li>
+            </ul>
+        </nav>
+        <label for="nav-toggle" class="nav-toggle-label">
+            <span></span>
+        </label>
+    </header>
+
+    <div class="pxImage1 parentContainer">
+        <section id="appContainer">
+            <!-- <div class="plant-image">
+                <img src="https://images.unsplash.com/photo-1512428813834-c702c7702b78?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9" alt="plant image">
+            </div> -->
+            <div class="plant-details">
+                <div class="buttons-block">
+                    <div class="sensorReadingButtons">
+                        <a href="#"><img src="./images/icons/water-drop.svg"><span><br>Moisture</span></a>
+                        <a href="#" id="temp-btn"><img src="./images/icons/temperature-measure.svg" alt="Temperature Sensor Icon"><span><br>Temperature</span></a>
+                        <a href="#" id="modal-btn"><img src="./images/icons/sun.svg" alt="Light Sensor Icon"><span><br>Light</span></a>
+                    </div>
+                    <div class="weather-check-block">
+                            <a href="#" id="modal-btn"><img src="./images/icons/cloud.svg" alt="Weather Icon"><span><br>Weather</span></a>
+                    </div>
+                </div>
+                <div class="sensor-details">
+                    <div class="sensor-block">
+                        <h3>Moisture Sensor</h3>
+                        <p>
+                            Soil moisture is a key variable in controlling the exchange of water and heat energy between the land and surfaces so plays an important role in the development of weather patterns and the production of precipitation.
+                        </p>
+                    </div>
+                    <div class="sensor-block">
+                        <h3>Temperature Sensor</h3>
+                        <p>
+                                Temperature is one of the most important environmental signals for plants. High and low temperatures have a variety of effects that affect plant growth and development profoundly.
+                        </p>
+                    </div>
+                    <div class="sensor-block">
+                        <h3>Sunlight Sensor</h3>
+                        <p>
+                                The sensor let us know the intensity of the sunlight. By which we will be aware about the intensity our plant will get.Also will let you know what amount of sunlight is good or bad for your plant.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close" id="closeBtn">&times;</span>
+            <section id="modalHead">
+                <h2>Modal</h2>
+            </section>
+            <section id="modalBody">
+                <canvas id="chart"></canvas>
+                <canvas id="tempChart"></canvas>
+            </section>
+        </div>
+    </div>
+
+    <script>
+        //Establishing socket connection.
+        //Required for all the following script includes.
+        //So it is written as internal js.
+        const socket = io('http://localhost:3000')
+    </script>
+    
+    <script>
+        // Get DOM Elements
+        const modalBtn = document.querySelector('#modal-btn');
+        const tempBtn = document.querySelector("#temp-btn");
+        const modal = document.querySelector('#myModal');
+        const closeBtn = document.getElementById("closeBtn");
+
+        // Open
+        function openModal() {
+            if(event.target.alt == "Light Sensor Icon") {
+                document.getElementById("modalHead").childNodes[1].innerHTML = "Light";
+                document.getElementById("chart").style.display = "block";
+                
+                document.getElementById("tempChart").style.display = "none";
+            } else if(event.target.alt == "Temperature Sensor Icon") {
+                document.getElementById("modalHead").childNodes[1].innerHTML = "Temperature";
+                document.getElementById("tempChart").style.display = "block";
+
+                document.getElementById("chart").style.display = "none";
+            }
+            modal.style.display = 'block';
+        }
+
+        // Close
+        function closeModal() {
+            modal.style.display = 'none';
+        }
+
+        // Close If Outside Click
+        function outsideClick(e) {
+            if (e.target == modal) {
+                modal.style.display = 'none';
+            }
+        }
+
+        // Events
+        modalBtn.addEventListener('click', openModal);
+        tempBtn.addEventListener('click', openModal);
+
+        closeBtn.addEventListener('click', closeModal);
+        window.addEventListener('click', outsideClick);
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.13.0/moment.min.js"></script>
+    <script src="http://www.chartjs.org/samples/latest/utils.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.js"></script>
+    <script src="/javascripts/script.js"></script>
+</body>
+</html>
