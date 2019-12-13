@@ -303,7 +303,168 @@ nav a {
 }
 
 /*PC VIEW*/
+@media screen and (min-width: 800px) {
+	.nav-toggle-label {
+		display: none;
+	}
+	header {
+		display: grid;
+		grid-template-columns: 1fr 1fr 1fr 1fr;
+	}
+	.logo {
+		grid-column: 1/3;
+		width: 25%;
+		min-width: 100px;
+		max-width: 200px;
+		margin-top: 25px;
+		margin-left: 30px;
+	}
+	nav {
+		position: relative;
+		text-align: left;
+		transition: none;
+		transform: scale(1, 1);
+		background: none;
+		top: initial;
+		left: initial;
+		/* end Edge support stuff */
+		grid-column: 4/4;
+		padding-right: 45px;
+		margin-top: 20px;
+		display: flex;
+		justify-content: flex-end;
+		align-items: center;
+	}
+	nav ul {
+		display: flex;
+	}
+	nav li {
+		margin-left: 3em;
+		margin-bottom: 0;
+	}
+	nav a {
+		opacity: 1;
+		position: relative;
+	}
+	nav a::before {
+		content: "";
+		display: block;
+		height: 5px;
+		background: #000;
+		position: absolute;
+		top: -0.75em;
+		left: 0;
+		right: 0;
+		-moz-transform: scale(0, 1);
+		-o-transform: scale(0, 1);
+		-webkit-transform: scale(0, 1);
+		-ms-transform: scale(0, 1);
+		transform: scale(0, 1);
+		-moz-transition: transform ease-in-out 250ms;
+		-o-transition: transform ease-in-out 250ms;
+		-webkit-transition: transform ease-in-out 250ms;
+		-ms-transition: transform ease-in-out 250ms;
+		transition: transform ease-in-out 250ms;
+	}
+	nav a:hover::before {
+		-moz-transform: scale(1, 1);
+		-o-transform: scale(1, 1);
+		-ms-transform: scale(1, 1);
+		-webkit-transform: scale(1, 1);
+		transform: scale(1, 1);
+	}
 
+	.parentContainer {
+		display: flex;
+		justify-content: center;
+	}
+	
+	#appContainer {
+		width: 80% !important;
+		background-color: rgba(163, 203, 56, 0.65);
+		height: 600px !important;
+		align-self: center;
+		padding: 25px;
+		display: flex !important;
+		flex-direction: row !important;
+		justify-content: space-between !important;
+
+		max-width: 915px;
+	}
+
+	.plant-name {
+		color: #000;
+	}
+	
+	/*.plant-image {
+		width: 35%;
+		height: 100%;
+	}
+	
+	.plant-image img {
+		width: 100%;
+		height: 100% !important;
+	}*/
+	
+	.plant-details {
+		/*width: 60%;*/
+		display: flex;
+		flex-direction: column;
+	}
+
+	.buttons-block {
+		display: flex;
+		justify-content: space-between;
+	}
+	
+	.plant-details h3 {
+		font-size: 3em;
+		letter-spacing: 5px;
+		font-weight: bold;
+		padding: 0;
+		margin: 25px 0 30px 0;
+	}
+	
+	.sensorReadingButtons {
+		display: flex;
+		flex-direction: row;
+	}
+
+	.weather-check-block {
+		display: flex;
+		justify-content: flex-end;
+	}
+	
+	.sensorReadingButtons a img {
+		width: 75px;
+		padding-bottom: 10px;
+	}
+	
+	.sensorReadingButtons a {
+		margin-right: 20px;
+		text-align: center;
+		text-decoration: none;
+		color: #000;
+		transition: all 1s ease;
+	}
+	
+	.plant-details p::-webkit-scrollbar {
+		width: 1em;
+	}
+	   
+	.plant-details p::-webkit-scrollbar-track {
+		box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+	}
+	   
+	.plant-details p::-webkit-scrollbar-thumb {
+		background-color: #333;
+		outline: 1px solid #333;
+	}
+
+	.modal-content {
+		width: 80% !important;
+	}
+}
 /*=========*/
 
 nav li:first-child {
