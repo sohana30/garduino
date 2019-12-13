@@ -84,5 +84,59 @@
         </div>
     </div>
 
+    <script>
+        //Establishing socket connection.
+        //Required for all the following script includes.
+        //So it is written as internal js.
+        const socket = io('http://localhost:3000')
+    </script>
+    
+    <script>
+        // Get DOM Elements
+        const modalBtn = document.querySelector('#modal-btn');
+        const tempBtn = document.querySelector("#temp-btn");
+        const modal = document.querySelector('#myModal');
+        const closeBtn = document.getElementById("closeBtn");
+
+        // Open
+        function openModal() {
+            if(event.target.alt == "Light Sensor Icon") {
+                document.getElementById("modalHead").childNodes[1].innerHTML = "Light";
+                document.getElementById("chart").style.display = "block";
+                
+                document.getElementById("tempChart").style.display = "none";
+            } else if(event.target.alt == "Temperature Sensor Icon") {
+                document.getElementById("modalHead").childNodes[1].innerHTML = "Temperature";
+                document.getElementById("tempChart").style.display = "block";
+
+                document.getElementById("chart").style.display = "none";
+            }
+            modal.style.display = 'block';
+        }
+
+        // Close
+        function closeModal() {
+            modal.style.display = 'none';
+        }
+
+        // Close If Outside Click
+        function outsideClick(e) {
+            if (e.target == modal) {
+                modal.style.display = 'none';
+            }
+        }
+
+        // Events
+        modalBtn.addEventListener('click', openModal);
+        tempBtn.addEventListener('click', openModal);
+
+        closeBtn.addEventListener('click', closeModal);
+        window.addEventListener('click', outsideClick);
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.13.0/moment.min.js"></script>
+    <script src="http://www.chartjs.org/samples/latest/utils.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.js"></script>
+    <script src="/javascripts/script.js"></script>
 </body>
 </html>
